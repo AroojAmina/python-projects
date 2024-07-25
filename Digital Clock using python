@@ -1,0 +1,92 @@
+import tkinter as tk
+import time
+
+
+# Function to update the clock every second
+def time_update():
+    current_time = time.strftime('%H:%M:%S %p')
+    current_date = time.strftime('%d:%m:%Y')
+
+    hours, minutes, seconds, period = current_time.split(':')[:2] + current_time.split(':')[2].split()
+    day, month, year = current_date.split(':')
+
+    hours_label.config(text=hours)
+    minutes_label.config(text=minutes)
+    seconds_label.config(text=seconds)
+    period_label.config(text=period)
+
+    day_label.config(text=day)
+    month_label.config(text=month)
+    year_label.config(text=year)
+
+    clock.after(1000, time_update)
+
+
+# Create the main window
+clock = tk.Tk()
+clock.title(' ******* Digital Clock ******* ')
+clock.geometry('1000x300')
+clock.configure(bg='black')
+
+# Create frames for each part of the time
+frame_hours = tk.Frame(clock, bg='black', width=100, height=100)
+frame_minutes = tk.Frame(clock, bg='black', width=100, height=100)
+frame_seconds = tk.Frame(clock, bg='black', width=100, height=100)
+frame_period = tk.Frame(clock, bg='black', width=100, height=100)
+
+frame_day = tk.Frame(clock, bg='black', width=200, height=100)
+frame_month = tk.Frame(clock, bg='black', width=200, height=100)
+frame_year = tk.Frame(clock, bg='black', width=200, height=100)
+
+frame_hours.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+frame_minutes.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+frame_seconds.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+frame_period.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+
+frame_day.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+frame_month.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+frame_year.pack(side=tk.LEFT, expand=True, padx=10, pady=10)
+
+# Create labels to display hours, minutes, seconds, period, day, month, and year
+hours_label = tk.Label(frame_hours, font=('Arial', 50), bg='green', fg='white')
+minutes_label = tk.Label(frame_minutes, font=('Arial', 50), bg='green', fg='white')
+seconds_label = tk.Label(frame_seconds, font=('Arial', 50), bg='green', fg='white')
+period_label = tk.Label(frame_period, font=('Arial', 50), bg='green', fg='white')
+
+day_label = tk.Label(frame_day, font=('Arial', 50), bg='purple', fg='white')
+month_label = tk.Label(frame_month, font=('Arial', 50), bg='purple', fg='white')
+year_label = tk.Label(frame_year, font=('Arial', 50), bg='purple', fg='white')
+
+hours_label.pack(padx=10, pady=10)
+minutes_label.pack(padx=10, pady=10)
+seconds_label.pack(padx=10, pady=10)
+period_label.pack(padx=10, pady=10)
+
+day_label.pack(padx=10, pady=10)
+month_label.pack(padx=10, pady=10)
+year_label.pack(padx=10, pady=10)
+
+# Create labels to indicate what each frame represents
+hours_text_label = tk.Label(frame_hours, text='Hours', font=('Arial', 20), bg='green', fg='white', pady=10)
+minutes_text_label = tk.Label(frame_minutes, text='Minutes', font=('Arial', 20), bg='green', fg='white', pady=10)
+seconds_text_label = tk.Label(frame_seconds, text='Seconds', font=('Arial', 20), bg='green', fg='white', pady=10)
+period_text_label = tk.Label(frame_period, text='AM/PM', font=('Arial', 20), bg='green', fg='white', pady=10)
+
+day_text_label = tk.Label(frame_day, text='Day', font=('Arial', 20), bg='red', fg='white', pady=10)
+month_text_label = tk.Label(frame_month, text='Month', font=('Arial', 20), bg='red', fg='white', pady=10)
+year_text_label = tk.Label(frame_year, text='Year', font=('Arial', 20), bg='red', fg='white', pady=10)
+
+hours_text_label.pack()
+minutes_text_label.pack()
+seconds_text_label.pack()
+period_text_label.pack()
+
+day_text_label.pack()
+month_text_label.pack()
+year_text_label.pack()
+
+# Start the clock
+time_update()
+
+# Run the application
+clock.mainloop()
